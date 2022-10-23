@@ -1,8 +1,12 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import InputLabel from "@/Components/InputLabel.vue";
+import TextInput from "@/Components/TextInput.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import Sort from "@/Components/Sort.vue";
 
-const props = defineProps(["posts"]);
+const props = defineProps(["posts", "sort_fields", "sort_directions"]);
 </script>
 
 <template>
@@ -50,16 +54,22 @@ const props = defineProps(["posts"]);
                 </div>
 
                 <div v-else class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <Sort
+                        :sort_fields="sort_fields"
+                        :sort_directions="sort_directions"
+                        :url="route('dashboard')"
+                    ></Sort>
+
                     <div
                         v-for="post in posts.data"
                         :key="post.id"
                         class="bg-white overflow-hidden shadow-sm sm:rounded-lg"
                     >
-                        <article
-                            class="p-6 bg-white border-b border-gray-200 capitalize"
-                        >
+                        <article class="p-6 bg-white border-b border-gray-200">
                             <div>
-                                <h3 class="text-3xl">{{ post.title }}</h3>
+                                <h3 class="text-3xl capitalize">
+                                    {{ post.title }}
+                                </h3>
                                 <p class="mt-2 text-gray-500">
                                     {{ post.publication_date }}
                                 </p>

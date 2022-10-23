@@ -1,7 +1,8 @@
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import Sort from "@/Components/Sort.vue";
 
-const props = defineProps(["posts"]);
+const props = defineProps(["posts", "sort_fields", "sort_directions"]);
 </script>
 
 <template>
@@ -34,26 +35,34 @@ const props = defineProps(["posts"]);
         </div>
 
         <div class="mx-auto sm:px-6 lg:px-48">
+            <Sort
+                :sort_fields="sort_fields"
+                :sort_directions="sort_directions"
+                :url="route('home')"
+            ></Sort>
+
             <article
                 v-for="post in posts.data"
                 :key="post.id"
                 class="flex flex-col shadow my-4"
             >
-                <!-- Article Image -->
                 <div class="bg-white flex flex-col justify-start p-6">
                     <Link
                         :href="route('posts.show', post.slug)"
                         class="text-3xl font-bold hover:text-gray-700 pb-4 capitalize"
                         >{{ post.title }}</Link
                     >
-                    <p href="#" class="text-sm pb-3">
+                    <p class="text-sm pb-3">
                         By
-                        <a href="#" class="font-semibold hover:text-gray-800">{{
+                        <span class="font-semibold hover:text-gray-800">{{
                             post.user.name
-                        }}</a
-                        >, Published on {{ post.publication_date }}
+                        }}</span
+                        >,
+                        <span class="text-gray-500"
+                            >Published on {{ post.publication_date }}</span
+                        >
                     </p>
-                    <a href="#" class="pb-6">{{ post.description }}</a>
+                    <p class="pb-6">{{ post.description }}</p>
                     <Link
                         :href="route('posts.show', post.slug)"
                         class="uppercase text-gray-800 hover:text-black text-sm"

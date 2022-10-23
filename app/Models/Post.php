@@ -11,6 +11,13 @@ class Post extends Model
 {
     use HasFactory, Sluggable;
 
+    public const SORTABLE_FIELDS = ['Publication Date' => 'publication_date'];
+
+    public const SORT_DIRECTIONS = [
+        'Ascending' => 'asc',
+        'Descending' => 'desc'
+    ];
+
     /**
      * fillable attributes
      *
