@@ -15,11 +15,9 @@ const props = defineProps(["posts"]);
             </h2>
         </template>
 
-        <!-- flash message -->
         <div class="px-4 sm:px-6 lg:px-8">
-            <!-- list of published post -->
             <div class="py-12">
-                <!-- success message -->
+                <!-- flash success message -->
                 <div
                     v-if="$page.props.flash.success"
                     class="max-x-7xl mx-auto sm:px-6 lg:px-8 py-4 bg-green-100 text-center"
@@ -27,6 +25,7 @@ const props = defineProps(["posts"]);
                     {{ $page.props.flash.success }}
                 </div>
 
+                <!-- list of published post -->
                 <div
                     v-if="posts.length == 0"
                     class="max-w-7xl mx-auto sm:px-6 lg:px-8"
@@ -52,11 +51,11 @@ const props = defineProps(["posts"]);
 
                 <div v-else class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div
-                        v-for="post in posts"
+                        v-for="post in posts.data"
                         :key="post.id"
                         class="bg-white overflow-hidden shadow-sm sm:rounded-lg"
                     >
-                        <div
+                        <article
                             class="p-6 bg-white border-b border-gray-200 capitalize"
                         >
                             <div>
@@ -73,10 +72,45 @@ const props = defineProps(["posts"]);
                                     >VIEW</Link
                                 >
                             </div>
-                        </div>
+                        </article>
                     </div>
                 </div>
             </div>
+
+            <!-- pagination nav -->
+            <nav
+                class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-4 pb-3 flex items-center justify-between rounded-lg"
+                aria-label="Pagination"
+            >
+                <div class="hidden sm:block">
+                    <p class="text-sm text-gray-700">
+                        Showing
+                        <span class="font-medium">{{ posts.from }}</span>
+                        {{ " " }}
+                        to
+                        <span class="font-medium">{{ posts.to }}</span>
+                        {{ " " }}
+                        of
+                        <span class="font-medium">{{ posts.total }}</span>
+                        {{ " " }}
+                        results
+                    </p>
+                </div>
+                <div class="flex-1 flex justify-between sm:justify-end">
+                    <a
+                        :href="posts.prev_page_url"
+                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                    >
+                        Previous
+                    </a>
+                    <a
+                        :href="posts.next_page_url"
+                        class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                    >
+                        Next
+                    </a>
+                </div>
+            </nav>
         </div>
     </AuthenticatedLayout>
 </template>

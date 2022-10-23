@@ -62,24 +62,40 @@ const props = defineProps(["posts"]);
                 </div>
             </article>
 
-            <!-- Pagination -->
-            <div class="flex items-center py-8">
-                <a
-                    href="#"
-                    class="h-10 w-10 bg-blue-800 hover:bg-blue-600 font-semibold text-white text-sm flex items-center justify-center"
-                    >1</a
-                >
-                <a
-                    href="#"
-                    class="h-10 w-10 font-semibold text-gray-800 hover:bg-blue-600 hover:text-white text-sm flex items-center justify-center"
-                    >2</a
-                >
-                <Link
-                    :href="posts.next_page_url"
-                    class="h-10 w-10 font-semibold text-gray-800 hover:text-gray-900 text-sm flex items-center justify-center ml-3"
-                    >Next <i class="fas fa-arrow-right ml-2"></i
-                ></Link>
-            </div>
+            <!-- pagination nav -->
+            <nav
+                class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-4 pb-3 flex items-center justify-between rounded-lg"
+                aria-label="Pagination"
+            >
+                <div class="hidden sm:block">
+                    <p class="text-sm text-gray-700">
+                        Showing
+                        <span class="font-medium">{{ posts.from }}</span>
+                        {{ " " }}
+                        to
+                        <span class="font-medium">{{ posts.to }}</span>
+                        {{ " " }}
+                        of
+                        <span class="font-medium">{{ posts.total }}</span>
+                        {{ " " }}
+                        results
+                    </p>
+                </div>
+                <div class="flex-1 flex justify-between sm:justify-end">
+                    <a
+                        :href="posts.prev_page_url"
+                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                    >
+                        Previous
+                    </a>
+                    <a
+                        :href="posts.next_page_url"
+                        class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                    >
+                        Next
+                    </a>
+                </div>
+            </nav>
         </div>
     </div>
 </template>

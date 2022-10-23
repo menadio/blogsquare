@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +16,8 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $posts = auth()->user()->posts;
+        $posts = Post::where('user_id', auth()->user()->id)
+            ->paginate(5);
 
         return Inertia::render('Dashboard', [
             'posts' => $posts,
