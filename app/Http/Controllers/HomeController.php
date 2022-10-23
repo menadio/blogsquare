@@ -20,7 +20,7 @@ class HomeController extends Controller
         return Inertia::render('Welcome', [
             'posts' => $posts,
             'sort_fields' => Post::SORTABLE_FIELDS,
-            'sort_directions'  => Post::SORT_DIRECTIONS
+            'sort_directions' => Post::SORT_DIRECTIONS,
         ]);
     }
 }

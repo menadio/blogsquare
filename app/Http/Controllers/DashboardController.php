@@ -28,7 +28,7 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'posts' => $posts,
             'sort_fields' => Post::SORTABLE_FIELDS,
-            'sort_directions'  => Post::SORT_DIRECTIONS
+            'sort_directions' => Post::SORT_DIRECTIONS,
         ]);
     }
 }

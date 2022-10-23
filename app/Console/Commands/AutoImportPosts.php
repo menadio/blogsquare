@@ -51,7 +51,8 @@ class AutoImportPosts extends Command
             // store imported blog post
             if (isset($posts)) {
                 DB::transaction(function () use ($posts) {
-                    $admin = User::where('email', 'elomena@square1.com')->pluck('id')->first();
+                    $admin = User::where('email', config('blogsquare.admin_email'))
+                        ->pluck('id')->first();
 
                     foreach ($posts as $post) {
                         $data = $post + ['user_id' => $admin];

@@ -42,31 +42,41 @@ const orderBy = (e) => {
 </script>
 
 <template>
-    <div class="w-full">
-        <label for="sorting">Sort By</label>
-        <select @change="sortBy" name="sortBy">
-            <option
-                v-for="(field, index) in sort_fields"
-                :key="field"
-                :value="field"
-                :selected="selectedField"
+    <div class="mb-4 flex flex-row">
+        <div class="w-full md:w-1/4 p-3 flex flex-col">
+            <label for="sorting">Sort By</label>
+            <select
+                @change="sortBy"
+                name="sortBy"
+                class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >
-                {{ index }}
-            </option>
-        </select>
-    </div>
+                <option
+                    v-for="(field, index) in sort_fields"
+                    :key="field"
+                    :value="field"
+                    :selected="selectedField"
+                >
+                    {{ index }}
+                </option>
+            </select>
+        </div>
 
-    <div>
-        <label for="ordering">Order By</label>
-        <select @change="orderBy" name="orderBy">
-            <option
-                v-for="(direction, index) in sort_directions"
-                :key="direction"
-                :value="direction"
-                :selected="selectedDirection"
+        <div class="w-full md:w-1/4 p-3 flex flex-col">
+            <label for="ordering">Order By</label>
+            <select
+                @change="orderBy"
+                name="orderBy"
+                class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >
-                {{ index }}
-            </option>
-        </select>
+                <option
+                    v-for="(direction, index) in sort_directions"
+                    :key="direction"
+                    :value="direction"
+                    :selected="selectedDirection"
+                >
+                    {{ index }}
+                </option>
+            </select>
+        </div>
     </div>
 </template>

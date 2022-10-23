@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Post as BlogPost;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 
 class Post
 {

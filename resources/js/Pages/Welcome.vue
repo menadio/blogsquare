@@ -11,7 +11,7 @@ const props = defineProps(["posts", "sort_fields", "sort_directions"]);
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0"
     >
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        <div class="mb-12 hidden fixed top-0 right-0 px-6 py-4 sm:block">
             <Link
                 v-if="$page.props.auth.user"
                 :href="route('dashboard')"
@@ -34,7 +34,21 @@ const props = defineProps(["posts", "sort_fields", "sort_directions"]);
             </template>
         </div>
 
-        <div class="mx-auto sm:px-6 lg:px-48">
+        <div
+            v-if="posts.data.length == 0"
+            class="max-w-7xl mx-auto sm:px-6 lg:px-8"
+        >
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200 text-center">
+                    Welcome to
+                    <span class="text-cyan-700 font-black tracking-wide"
+                        >BlogSquare</span
+                    >! Register now and be the first to post an article.
+                </div>
+            </div>
+        </div>
+
+        <div v-else class="mx-auto sm:px-6 lg:px-48">
             <Sort
                 :sort_fields="sort_fields"
                 :sort_directions="sort_directions"

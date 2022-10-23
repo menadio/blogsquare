@@ -3,13 +3,13 @@
 namespace Tests\Feature;
 
 use App\Jobs\PublishBlogPost;
-use Tests\TestCase;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Facades\Queue;
-use Illuminate\Foundation\Testing\WithFaker;
-use Inertia\Testing\AssertableInertia as Assert;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Queue;
+use Inertia\Testing\AssertableInertia as Assert;
+use Tests\TestCase;
 
 class PostTest extends TestCase
 {

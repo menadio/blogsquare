@@ -15,7 +15,7 @@ class Post extends Model
 
     public const SORT_DIRECTIONS = [
         'Ascending' => 'asc',
-        'Descending' => 'desc'
+        'Descending' => 'desc',
     ];
 
     /**
@@ -34,8 +34,8 @@ class Post extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 
