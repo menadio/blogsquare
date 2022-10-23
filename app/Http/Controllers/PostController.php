@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use Inertia\Inertia;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Jobs\PublishBlogPost;
 use App\Http\Requests\PostRequest;
+use App\Jobs\PublishBlogPost;
+use App\Models\Post;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -26,7 +24,7 @@ class PostController extends Controller
     /**
      * Store new blog post
      *
-     * @param PostRequest $request
+     * @param  PostRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request)
@@ -44,6 +42,7 @@ class PostController extends Controller
             Log::error($th->getMessage());
 
             request()->session()->flash('error', 'Oops something went wrong! Try again');
+
             return Redirect::back()->withInput();
         }
     }
@@ -51,7 +50,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return Inertia::render('Post/Show', [
-            'post' => $post->load('user')
+            'post' => $post->load('user'),
         ]);
     }
 }

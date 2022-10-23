@@ -9,7 +9,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 const form = useForm({
     title: "",
     description: "",
-    publication_date: "",
+    publishedAt: "",
 });
 
 const submit = () => {
@@ -76,7 +76,7 @@ const submit = () => {
                                     value="Publication Date"
                                 />
                                 <input
-                                    v-model="form.publication_date"
+                                    v-model="form.publishedAt"
                                     type="datetime-local"
                                     class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                 />

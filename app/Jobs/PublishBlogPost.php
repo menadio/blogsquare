@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Services\Post;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -41,7 +40,7 @@ class PublishBlogPost implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @param App\Services\Post $post
+     * @param  App\Services\Post  $post
      * @return void
      */
     public function handle(Post $post)

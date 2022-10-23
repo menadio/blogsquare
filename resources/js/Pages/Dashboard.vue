@@ -17,13 +17,16 @@ const props = defineProps(["posts"]);
 
         <!-- flash message -->
         <div class="px-4 sm:px-6 lg:px-8">
-            <!-- success message -->
-            <div v-if="$page.props.flash.success" class="alert">
-                {{ $page.props.flash.success }}
-            </div>
-
             <!-- list of published post -->
             <div class="py-12">
+                <!-- success message -->
+                <div
+                    v-if="$page.props.flash.success"
+                    class="max-x-7xl mx-auto sm:px-6 lg:px-8 py-4 bg-green-100 text-center"
+                >
+                    {{ $page.props.flash.success }}
+                </div>
+
                 <div
                     v-if="posts.length == 0"
                     class="max-w-7xl mx-auto sm:px-6 lg:px-8"

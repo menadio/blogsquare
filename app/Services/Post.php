@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
+use App\Models\Post as BlogPost;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Models\Post as BlogPost;
 
 class Post
 {
     public function publish($data)
     {
-        $publication_date = Carbon::parse($data['publication_date'])
+        $publication_date = Carbon::parse($data['publishedAt'])
             ->toDateTimeString();
 
         BlogPost::create([
@@ -18,7 +18,7 @@ class Post
             'title' => $data['title'],
             'slug' => Str::slug($data['title']),
             'description' => $data['description'],
-            'publication_date' => $publication_date
+            'publication_date' => $publication_date,
         ]);
     }
 }

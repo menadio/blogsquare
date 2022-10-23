@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Log;
 
 class PostRequest extends FormRequest
 {
@@ -27,7 +26,7 @@ class PostRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:50'],
             'description' => ['required', 'string'],
-            'publication_date' => ['required', 'date', 'after_or_equal:today'],
+            'publishedAt' => ['required', 'date', 'after_or_equal:today'],
         ];
     }
 }
