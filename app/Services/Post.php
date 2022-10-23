@@ -16,7 +16,6 @@ class Post
         BlogPost::create([
             'user_id' => $data['user_id'],
             'title' => $data['title'],
-            // 'slug' => Str::slug($data['title']),
             'description' => $data['description'],
             'publication_date' => $publication_date,
         ]);
