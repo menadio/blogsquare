@@ -41,6 +41,7 @@ class PublishBlogPost implements ShouldQueue
     /**
      * Execute the job.
      *
+     * @param App\Services\Post $post
      * @return void
      */
     public function handle(Post $post)

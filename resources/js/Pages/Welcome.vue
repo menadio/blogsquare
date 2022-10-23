@@ -40,21 +40,11 @@ const props = defineProps(["posts"]);
                 class="flex flex-col shadow my-4"
             >
                 <!-- Article Image -->
-                <a href="#" class="hover:opacity-75">
-                    <img
-                        src="https://source.unsplash.com/collection/1346951/1000x500?sig=3"
-                    />
-                </a>
                 <div class="bg-white flex flex-col justify-start p-6">
-                    <a
-                        href="#"
-                        class="text-blue-700 text-sm font-bold uppercase pb-4"
-                        >Sports</a
-                    >
-                    <a
-                        href="#"
+                    <Link
+                        :href="route('posts.show', post.slug)"
                         class="text-3xl font-bold hover:text-gray-700 pb-4 capitalize"
-                        >{{ post.title }}</a
+                        >{{ post.title }}</Link
                     >
                     <p href="#" class="text-sm pb-3">
                         By

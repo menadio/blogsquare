@@ -12,12 +12,6 @@ const props = defineProps(["post"]);
         <section class="mx-auto sm:px-6 lg:px-48">
             <article class="flex flex-col shadow my-4">
                 <!-- Article Image -->
-                <div class="hover:opacity-75">
-                    <img
-                        src="https://source.unsplash.com/collection/1346951/1000x500?sig=1"
-                    />
-                </div>
-
                 <div class="bg-white flex flex-col justify-start p-6">
                     <h2
                         class="text-3xl font-bold hover:text-gray-700 pb-4 capitalize"

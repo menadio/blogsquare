@@ -34,7 +34,8 @@ class PostController extends Controller
         try {
             $data = $request->validated() + ['user_id' => auth()->user()->id];
 
-            PublishBlogPost::dispatch($data)->onQueue('high');
+            PublishBlogPost::dispatch($data)
+                ->onQueue('high-priority');
 
             request()->session()->flash('success', 'Great job! Your post is being published...');
 
