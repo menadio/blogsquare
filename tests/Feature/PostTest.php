@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\PublishBlogPost;
+use Tests\TestCase;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Foundation\Testing\WithFaker;
 use Inertia\Testing\AssertableInertia as Assert;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PostTest extends TestCase
 {
@@ -44,6 +46,8 @@ class PostTest extends TestCase
 
     public function test_auth_user_can_create_blog_post()
     {
+        Queue::fake();
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user, 'web')
@@ -51,13 +55,12 @@ class PostTest extends TestCase
                 'title' => $this->faker->words(4, true),
                 'slug' => $this->faker->slug(),
                 'description' => $this->faker->realText(200),
-                'publication_date' => now()->toDateTimeString(),
+                'publishedAt' => now()->toDateTimeString(),
             ]);
+
+        Queue::assertPushedOn('high-priority', PublishBlogPost::class);
 
         $response->assertStatus(302)
             ->assertSessionHas('success');
-
-        // $response->assertRedirect(route('dashboard'))
-        //     ->assertSessionHas('success');
     }
 }
