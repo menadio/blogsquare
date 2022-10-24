@@ -9,9 +9,11 @@ const props = defineProps(["posts", "sort_fields", "sort_directions"]);
     <Head title="Welcome" />
 
     <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0"
+        class="relative flex items-top justify-center bg-gray-100 sm:items-center sm:pt-0"
     >
-        <div class="mb-12 hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        <div
+            class="hidden fixed items-center justify-between top-0 right-0 px-6 py-4 sm:block w-full"
+        >
             <Link
                 v-if="$page.props.auth.user"
                 :href="route('dashboard')"
@@ -33,11 +35,10 @@ const props = defineProps(["posts", "sort_fields", "sort_directions"]);
                 >
             </template>
         </div>
+    </div>
 
-        <div
-            v-if="posts.data.length == 0"
-            class="max-w-7xl mx-auto sm:px-6 lg:px-8"
-        >
+    <div class="mt-24">
+        <div v-if="posts.data.length == 0" class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200 text-center">
                     Welcome to
@@ -48,7 +49,7 @@ const props = defineProps(["posts", "sort_fields", "sort_directions"]);
             </div>
         </div>
 
-        <div v-else class="mx-auto sm:px-6 lg:px-48">
+        <div v-else class="mt-8 mx-auto sm:px-6 lg:px-48">
             <Sort
                 :sort_fields="sort_fields"
                 :sort_directions="sort_directions"
@@ -63,7 +64,7 @@ const props = defineProps(["posts", "sort_fields", "sort_directions"]);
                 <div class="bg-white flex flex-col justify-start p-6">
                     <Link
                         :href="route('posts.show', post.slug)"
-                        class="text-3xl font-bold hover:text-gray-700 pb-4 capitalize"
+                        class="text-3xl hover:text-gray-700 pb-4 capitalize"
                         >{{ post.title }}</Link
                     >
                     <p class="text-sm pb-3">
