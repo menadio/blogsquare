@@ -12,10 +12,11 @@ const props = defineProps(["post"]);
     >
         <div class="hidden w-full fixed top-0 right-0 px-6 py-4 sm:block">
             <Link
-                hre="#"
+                v-if="!$page.props.auth.user"
+                :href="route('home')"
                 class="text-sm text-gray-700 dark:text-gray-500 underline"
             >
-                Back
+                Return Home
             </Link>
 
             <Link
